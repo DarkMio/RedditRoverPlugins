@@ -18,7 +18,7 @@ class SmallSubBot(Base):
                          'x\\post', 'via', 'from', 'hhh', 'trending subreddits']
 
     def execute_comment(self, comment):
-        pass
+        passadasdasdasd
 
     def execute_submission(self, submission):
         results = self.REGEX.findall(" " + submission.title)
