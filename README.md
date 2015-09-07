@@ -1,2 +1,8 @@
 # RedditRoverPlugins
-A repository for plugins used in RedditRover.
+
+This is a collection of RedditRover Plugins. You can find their profiles here:
+
+- [MassdropBot](http://reddit.com/u/MassdropBot)
+- [JiffierBot](http://reddit.com/u/JiffierBot)
+- [SmallSubBot](http://reddit.com/u/SmallSubBot)
+- [JiffierBot](http://reddit.com/u/JiffierBot)
