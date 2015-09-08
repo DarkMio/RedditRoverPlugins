@@ -8,8 +8,8 @@ import re
 
 class SmallSubBot(Base):
 
-    def __init__(self, database):
-        super().__init__(database, 'SmallSubBot')
+    def __init__(self, database, handler):
+        super().__init__(database, handler, 'SmallSubBot')
         self.factory_config()
         self.REGEX = re.compile(r"\s/?[rR]/([A-Za-z0-9_]*)[^\s\].,)]*")
         self.DESCRIPTION_REGEX = re.compile(r"(\[).*?(\]\(.*?\))|(\\n)|(#)")  # Helps escaping shitty reddit markdown
@@ -52,10 +52,10 @@ class SmallSubBot(Base):
     def general_action(self, submission):
         result = self.REGEX.findall(" " + submission.title)
         if result:
-            self.oa_refresh()
             response = self.generate_response(result, submission.subreddit.display_name)
             if response:
                 try:
+                    self.oa_refresh()
                     self.session._add_comment(submission.name, response)
                 except RateLimitExceeded:
                     self.logger.error('RateLimitExceeded - skipping the comment.')
@@ -130,9 +130,9 @@ class SmallSubText:
         return "Fields:" + p + self.intro + p + self.subreddit_binding + p + self.outro
 
 
-def init(database):
+def init(database, handler):
     """Init Call from module importer to return only the object itself, rather than the module."""
-    return SmallSubBot(database)
+    return SmallSubBot(database, handler)
 
 
 if __name__ == "__main__":

@@ -11,8 +11,8 @@ from misc.mutliple_strings import multiple_of
 
 class Massdrop(Base):
 
-    def __init__(self, database):
-        super().__init__(database, 'MassdropBot')
+    def __init__(self, database, handler):
+        super().__init__(database, handler, 'MassdropBot')
         super().factory_config()
         self.responses = MassdropText("bot_config.ini")
         self.REGEX = re.compile(r"(https?:\/\/(?:www\.)?massdrop\.com\/buy\/([\w\d-]*)[^\s;,.\])]*)", re.UNICODE)
@@ -162,9 +162,9 @@ class MassdropText:
                + p + self.outro_drop
 
 
-def init(database):
+def init(database, handler):
     """Init Call from module importer to return only the object itself, rather than the module."""
-    return Massdrop(database)
+    return Massdrop(database, handler)
 
 if __name__ == "__main__":
     from core import LogProvider

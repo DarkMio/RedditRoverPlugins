@@ -4,8 +4,8 @@ import re
 
 
 class LeafeatorBot(Base):
-    def __init__(self, database):
-        super().__init__(database, 'LeafeatorBot')
+    def __init__(self, database, handler):
+        super().__init__(database, handler, 'LeafeatorBot')
         self.APPROVE = ['dota2circlejerk', 'dota2', 'dotamasterrace', 'dota2moddingtesting']
         self.RESPONSE = self.config.get('LeafeatorBot', 'response')
         self.REGEX = re.compile(
@@ -56,9 +56,9 @@ class LeafeatorBot(Base):
         pass
 
 
-def init(database):
+def init(database, handler):
     """Init Call from module importer to return only the object itself, rather than the module."""
-    return LeafeatorBot(database)
+    return LeafeatorBot(database, handler)
 
 
 if __name__ == '__main__':

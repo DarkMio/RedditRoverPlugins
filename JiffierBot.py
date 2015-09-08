@@ -7,8 +7,8 @@ import re
 
 
 class JiffierBot(Base):
-    def __init__(self, database):
-        super().__init__(database, 'JiffierBot')
+    def __init__(self, database, handler):
+        super().__init__(database, handler, 'JiffierBot')
         self.REGEX = re.compile(r'https?:\/\/(?:giant|fat|zippy).gfycat.com\/([\w]*)\.gif', re.UNICODE)
         self.API_URL = 'http://gfycat.com/cajax/get/{}'
         self.FIX_URL = 'http://gfycat.com/{}'
@@ -87,9 +87,9 @@ class JifferText:
                + p + self.outro
 
 
-def init(database):
+def init(database, handler):
     """Init Call from module importer to return only the object itself, rather than the module."""
-    return JiffierBot(database)
+    return JiffierBot(database, handler)
 
 
 if __name__ == '__main__':
