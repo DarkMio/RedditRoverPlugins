@@ -98,18 +98,18 @@ class SmallSubBot(Base):
         """Formats a subreddit description"""
         nsfw = ('', '[**NSFW**] ')[over18]
         # get the first line of their description
-        for chars in description:
-            if chars.isspace(): description = description[1:]
-            else: break
-
-        description = description.split('\n')[0]
-
-        for x in range(10):
-            if len(description) <= 250: break
-            description = '.'.join(description.split('.')[:-1])
-
-        if len(description) > 250:
-            description = description[:250] + ' [...]'
+        # for chars in description:
+        #     if chars.isspace(): description = description[1:]
+        #     else: break
+        #
+        # description = description.split('\n')[0]
+        #
+        # for x in range(10):
+        #     if len(description) <= 250: break
+        #     description = '.'.join(descxription.split('.')[:-1])
+        #
+        # if len(description) > 250:
+        #     description = description[:250] + ' [...]'
         return nsfw + description
 
 
