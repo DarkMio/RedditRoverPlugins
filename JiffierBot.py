@@ -1,12 +1,12 @@
 # coding=utf-8
-from core.BaseClass import Base
+from core.baseclass import PluginBase
 from pkg_resources import resource_filename
 from configparser import ConfigParser
 from requests import get as requests_get
 import re
 
 
-class JiffierBot(Base):
+class JiffierBot(PluginBase):
     def __init__(self, database, handler):
         super().__init__(database, handler, 'JiffierBot')
         self.REGEX = re.compile(r'https?:\/\/(?:giant|fat|zippy).gfycat.com\/([\w]*)\.gif', re.UNICODE)

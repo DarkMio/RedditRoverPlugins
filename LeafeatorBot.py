@@ -1,9 +1,9 @@
 # coding=utf-8
-from core.BaseClass import Base
+from core.baseclass import PluginBase
 import re
 
 
-class LeafeatorBot(Base):
+class LeafeatorBot(PluginBase):
     def __init__(self, database, handler):
         super().__init__(database, handler, 'LeafeatorBot')
         self.APPROVE = ['dota2circlejerk', 'dota2', 'dotamasterrace', 'dota2moddingtesting']

@@ -1,12 +1,12 @@
 # coding=utf-8
-from core.BaseClass import Base
+from core.baseclass import PluginBase
 from pkg_resources import resource_filename
 from configparser import ConfigParser
 from praw.errors import InvalidSubreddit, RateLimitExceeded
 import re
 
 
-class SmallSubBot(Base):
+class SmallSubBot(PluginBase):
 
     def __init__(self, database, handler):
         super().__init__(database, handler, 'SmallSubBot')

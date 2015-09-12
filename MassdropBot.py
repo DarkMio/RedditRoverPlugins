@@ -1,6 +1,6 @@
 # coding=utf-8
 import re
-from core.BaseClass import Base
+from core.baseclass import PluginBase
 from configparser import ConfigParser
 from pkg_resources import resource_filename
 from requests import get as requests_get
@@ -9,7 +9,7 @@ from praw.objects import Comment
 from misc.mutliple_strings import multiple_of
 
 
-class Massdrop(Base):
+class Massdrop(PluginBase):
 
     def __init__(self, database, handler):
         super().__init__(database, handler, 'MassdropBot')
