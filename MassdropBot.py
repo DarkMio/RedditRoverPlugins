@@ -166,12 +166,12 @@ def init(database, handler):
     return Massdrop(database, handler)
 
 if __name__ == "__main__":
-    from core import LogProvider
-    from core.DatabaseProvider import DatabaseProvider
-    logger = LogProvider.setup_logging()
+    from core import logprovider
+    from core.database import Database
+    logger = logprovider.setup_logging()
     mt = MassdropText("bot_config.ini")
     print(mt)
-    db = DatabaseProvider()
+    db = Database()
     md = Massdrop(db)
 
     print(md.execute_textbody('https://www.massdrop.com/buy/creative-aurvana-live-2'))
