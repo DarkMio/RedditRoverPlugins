@@ -40,13 +40,12 @@ class Massdrop(PluginBase):
     def execute_titlepost(self, title_only):
         pass
 
-    def update_procedure(self, thing_id, created, lifetime, last_updated, interval):
+    def update_procedure(self, thing, created, lifetime, last_updated, interval):
         self.oa_refresh()
-        comment = self.session.get_info(thing_id=thing_id)
+        comment = thing
         if comment.score < -5:
             comment.delete()
-            self.database.delete_from_update(thing_id, self.BOT_NAME)
-            return
+            self.database.delete_from_update(thing.name, self.BOT_NAME)
 
         if isinstance(comment, Comment):
             response, time_left = self.general_action(comment.body, True)
