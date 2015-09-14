@@ -36,7 +36,7 @@ class SmallSubBot(PluginBase):
         if any(bans in title_only.title.lower() for bans in self.banwords): return False
         return self.general_action(title_only)
 
-    def update_procedure(self, thing_id, created, lifetime, last_updated, interval):
+    def update_procedure(self, thing, created, lifetime, last_updated, interval):
         pass
 
     def on_new_message(self, message):

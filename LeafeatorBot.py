@@ -24,12 +24,11 @@ class LeafeatorBot(PluginBase):
     def execute_submission(self, submission):
         return self.general_action(submission.selftext, submission)
 
-    def update_procedure(self, thing_id, created, lifetime, last_updated, interval):
+    def update_procedure(self, thing, created, lifetime, last_updated, interval):
         pass
 
     def general_action(self, body, thing, is_comment=False):
         if thing.author and 'leafeator' in thing.author.name.lower():
-            self.logger.info('Leafeator posted - ignoring')
             return False
 
         if thing.subreddit.display_name.lower() not in self.APPROVE:
@@ -37,17 +36,16 @@ class LeafeatorBot(PluginBase):
 
         result = self.REGEX.findall(body)
         if result:
-            self.logger.info('I should post soon if not already answered.')
             if not is_comment:
                 thread_id = thing.name
             else:
                 thread_id = thing.submission.name
             if self.database.retrieve_thing(thread_id, self.BOT_NAME):
-                self.logger.info('Skipped - already commented in thread.')
                 return False
 
             self.oa_refresh()
             self.session._add_comment(thing.name, self.RESPONSE)
+            self.logger.info('I\'ve posted here: https://redd.it/{}'.format(thing.permalink))
             self.database.insert_into_storage(thread_id, self.BOT_NAME)
             return True
         return False
@@ -63,10 +61,12 @@ def init(database, handler):
 
 if __name__ == '__main__':
     from praw import Reddit
-    from core.DatabaseProvider import DatabaseProvider
-    from core import LogProvider
-    logger = LogProvider.setup_logging(log_level="DEBUG")
-    db = DatabaseProvider()
-    lb = LeafeatorBot(db)
+    from core.database import Database
+    from core.logprovider import setup_logging
+    from core.handlers import RoverHandler
+    logger = setup_logging(log_level="DEBUG")
+    db = Database()
+    lb = LeafeatorBot(db, RoverHandler())
     lb.test_single_comment('cuomou4')
+
     # lb.execute_submission(subm)

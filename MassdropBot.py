@@ -168,12 +168,20 @@ def init(database, handler):
 if __name__ == "__main__":
     from core import logprovider
     from core.database import Database
+    from core.handlers import RoverHandler
+    from time import strptime
     logger = logprovider.setup_logging()
     mt = MassdropText("bot_config.ini")
     print(mt)
     db = Database()
-    md = Massdrop(db)
+    md = Massdrop(db, RoverHandler())
 
-    print(md.execute_textbody('https://www.massdrop.com/buy/creative-aurvana-live-2'))
+    thread_dict = {'thing': md.session.get_info(thing_id='t1_cv0hu2w'),  # could be unsafe, but is immensely faster
+                   'created': strptime("2015-09-14 00:11:11", '%Y-%m-%d %H:%M:%S'),
+                   'lifetime': strptime("2015-09-14 00:11:11", '%Y-%m-%d %H:%M:%S'),
+                   'last_updated': strptime("2015-09-14 00:11:11", '%Y-%m-%d %H:%M:%S'),
+                   'interval': 3600}
+
+    md.update_procedure(**thread_dict)
 
     # print(md.update_procedure("t1_ctv1673", 0, 0, 0, 0))
