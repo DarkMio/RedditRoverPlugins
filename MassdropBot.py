@@ -31,7 +31,7 @@ class Massdrop(PluginBase):
         response, time_ends_in = self.general_action(thing_content)
         if response:
             self.oa_refresh()
-            generated = self.session._add_comment(target, response)
+            generated = self.add_comment(target, response)
             if time_ends_in:
                 self.database.insert_into_update(generated.name, self.BOT_NAME, time_ends_in.seconds + 13 * 3600, 43200)
             return True

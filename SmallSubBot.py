@@ -55,8 +55,7 @@ class SmallSubBot(PluginBase):
             response = self.generate_response(result, submission.subreddit.display_name)
             if response:
                 try:
-                    self.oa_refresh()
-                    self.session._add_comment(submission.name, response)
+                    self.add_comment(submission.name, response)
                 except RateLimitExceeded:
                     self.logger.error('RateLimitExceeded - skipping the comment.')
                 return True

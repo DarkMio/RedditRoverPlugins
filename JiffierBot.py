@@ -37,8 +37,7 @@ class JiffierBot(PluginBase):
         if result:
             response = self.generate_response(result)
             if response:
-                self.oa_refresh()
-                self.session._add_comment(thing_id, response)
+                self.add_comment(thing_id, response)
                 return True
         return False
 
