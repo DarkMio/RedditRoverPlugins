@@ -43,7 +43,6 @@ class LeafeatorBot(PluginBase):
             if self.database.retrieve_thing(thread_id, self.BOT_NAME):
                 return False
             self.add_comment(thing.name, self.RESPONSE)
-            self.logger.info('I\'ve posted here: https://redd.it/{}'.format(thing.permalink))
             self.database.insert_into_storage(thread_id, self.BOT_NAME)
             return True
         return False
