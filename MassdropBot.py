@@ -6,7 +6,7 @@ from pkg_resources import resource_filename
 from requests import get as requests_get
 from datetime import datetime
 from praw.objects import Comment
-from misc.mutliple_strings import multiple_of
+from misc.multiple_strings import multiple_of
 
 
 class Massdrop(PluginBase):
@@ -15,7 +15,7 @@ class Massdrop(PluginBase):
         super().__init__(database, handler, 'MassdropBot')
         super().factory_config()
         self.responses = MassdropText("bot_config.ini")
-        self.REGEX = re.compile(r"(https?:\/\/(?:www\.)?massdrop\.com\/buy\/([\w\d-]*)[^\s;,.\])]*)", re.UNICODE)
+        self.REGEX = re.compile(r"(https?://(?:www\.)?massdrop\.com/buy/([\w\d-]*)[^\s;,.\])]*)", re.UNICODE)
         self.API_URL = 'https://www.massdrop.com/api/drops;dropUrl={}'
 
     def execute_comment(self, comment):

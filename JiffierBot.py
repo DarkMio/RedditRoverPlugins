@@ -9,7 +9,7 @@ import re
 class JiffierBot(PluginBase):
     def __init__(self, database, handler):
         super().__init__(database, handler, 'JiffierBot')
-        self.REGEX = re.compile(r'https?:\/\/(?:giant|fat|zippy).gfycat.com\/([\w]*)\.gif', re.UNICODE)
+        self.REGEX = re.compile(r'https?://(?:giant|fat|zippy).gfycat.com/([\w]*)\.gif', re.UNICODE)
         self.API_URL = 'http://gfycat.com/cajax/get/{}'
         self.FIX_URL = 'http://gfycat.com/{}'
         self.responses = JifferText('bot_config.ini')
@@ -92,4 +92,4 @@ def init(database, handler):
 
 
 if __name__ == '__main__':
-    JiffierBot(None)
+    JiffierBot(None, None)

@@ -137,5 +137,5 @@ def init(database, handler):
 if __name__ == "__main__":
     sst = SmallSubText("bot_config.ini")
     print(sst)
-    ssb = SmallSubBot(None)
+    ssb = SmallSubBot(None, None)
     print(ssb.execute_textbody("/r/dota2 r/dota2 r/bestof r/wtf r/dota2modding /r/dota2modding"))

@@ -58,7 +58,6 @@ def init(database, handler):
 
 
 if __name__ == '__main__':
-    from praw import Reddit
     from core.database import Database
     from core.logprovider import setup_logging
     from core.handlers import RoverHandler
