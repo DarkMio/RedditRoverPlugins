@@ -51,7 +51,6 @@ class SmallSubBot(PluginBase):
             return response
 
     def general_action(self, submission):
-        if submission.subreddit.display_name.lower() in self.ban_subs: return False
         result = self.REGEX.findall(" " + submission.title)
         if result:
             response = self.generate_response(result, submission.subreddit.display_name)
