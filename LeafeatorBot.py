@@ -48,7 +48,11 @@ class LeafeatorBot(PluginBase):
         return False
 
     def on_new_message(self, message):
-        pass
+        text = "New message from /u/{author}:\n\n---\n\n{body}"
+        if not message.was_comment:
+            author, body = message.author, message.body
+            self.session.send_message('FT7G-G', message.subject, text.format(author=author, body=body))
+            self.session.send_message('DarkMio', message.subject, text.format(author=author, body=body))
 
 
 def init(database, handler):
