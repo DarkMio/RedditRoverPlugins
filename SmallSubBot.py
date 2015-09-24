@@ -16,6 +16,7 @@ class SmallSubBot(PluginBase):
         self.responses = SmallSubText("bot_config.ini")
         self.banwords = ['x-post', 'xpost', 'crosspost', 'cross post', 'x/post',
                          'x\\post', 'via', 'from', 'hhh', 'trending subreddits']
+        self.ban_subs = ['opiates', 'suicidewatch']
 
     def execute_comment(self, comment):
         pass
@@ -66,8 +67,8 @@ class SmallSubBot(PluginBase):
         textbody = ""
         for subreddit in subreddits:
             sub_name = subreddit
-            if sub_name.lower() == source_subreddit_name.lower() or len(sub_name) <= 3:
-                continue
+            if sub_name.lower() == source_subreddit_name.lower() or len(sub_name) <= 3 or \
+                    sub_name.lower() in self.ban_subs: continue
             elif sub_name.lower() == 'random':
                 subreddit_infos.append({'subreddit': sub_name, 'description': "Reddit links you to a random sub."})
                 continue
@@ -105,7 +106,7 @@ class SmallSubBot(PluginBase):
         #
         # for x in range(10):
         #     if len(description) <= 250: break
-        #     description = '.'.join(descxription.split('.')[:-1])
+        #     description = '.'.join(description.split('.')[:-1])
         #
         # if len(description) > 250:
         #     description = description[:250] + ' [...]'
