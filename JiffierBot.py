@@ -49,7 +49,7 @@ class JiffierBot(PluginBase):
             result = requests_get(self.API_URL.format(url))
             if result.ok:
                 gfy_item = result.json()['gfyItem']
-                size = '{:.1f}'.format(gfy_item['gifSize'] / gfy_item['webmSize'])
+                size = '{:.1f}'.format(int(gfy_item['gifSize']) / int(gfy_item['webmSize']))
                 title = [fix_url, gfy_item['title']][gfy_item['title'] is True]
                 reddit = gfy_item['redditId']
                 carebox.append({'fix_url': fix_url, 'size': size, 'title': title, 'reddit': reddit})
